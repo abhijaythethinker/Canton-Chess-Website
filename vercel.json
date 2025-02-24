@@ -6,18 +6,18 @@
       "use": "@vercel/static-build"
     },
     {
-      "src": "backend/server.js",
+      "src": "api/api.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/get-membership-expiration",
-      "dest": "backend/server.js"
+      "src": "/api/get-membership-expiration",
+      "dest": "/api/api.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/dist/$1"
     }
   ]
 }
