@@ -1,13 +1,11 @@
-import express from 'express';
 import puppeteer from 'puppeteer';
-import cors from 'cors';
 
-const app = express();
-app.use(express.json());
-app.use(cors());
+// Web Scraping Handler for Vercel
+export default async function handler(req, res) {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method Not Allowed' });
+    }
 
-// Web Scraping Route (with queue)
-app.post('/api/get-membership-expiration', async (req, res) => {
     console.log('Received request:', req.body);
 
     const { uscfId } = req.body;
@@ -62,7 +60,4 @@ app.post('/api/get-membership-expiration', async (req, res) => {
         console.error('Error during scraping:', error);
         return res.status(500).json({ error: 'Failed to scrape player information' });
     }
-});
-
-// Export the handler for Vercel to use
-export default app;
+}
