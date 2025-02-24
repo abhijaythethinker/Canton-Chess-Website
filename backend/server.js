@@ -13,12 +13,16 @@ app.use(express.json());
 // The route to handle the USCF ID scraping
 app.post('/get-membership-expiration', async (req, res) => {
     const { uscfId } = req.body;
+
+    console.log('Received USCF ID:', uscfId);
+
     if (!uscfId) {
         return res.status(400).json({ error: 'USCF ID is required' });
     }
 
     try {
         // Launch Puppeteer (with headless mode enabled)
+        console.log('Starting Puppeteer...');
         const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
         const page = await browser.newPage();
 
@@ -56,6 +60,8 @@ app.post('/get-membership-expiration', async (req, res) => {
         });
 
         await browser.close();
+
+        console.log('Scraped result:', result);
 
         // If we found the expiration date and player name, send them back in the response
         if (result.expirationDate || result.playerName) {
