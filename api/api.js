@@ -63,3 +63,6 @@ app.post('/api/get-membership-expiration', async (req, res) => {
         return res.status(500).json({ error: 'Failed to scrape player information' });
     }
 });
+
+// Export the handler for Vercel to use
+export default app;
