@@ -35,3 +35,4 @@ lerna-debug.log*
 # OS-specific files
 Thumbs.db           # Windows thumbs.db files
 Desktop.ini         # Windows desktop.ini files
+.vercel
