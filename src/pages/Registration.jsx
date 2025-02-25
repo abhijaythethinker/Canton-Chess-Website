@@ -6,10 +6,17 @@ function Registration() {
 
     const sections = [
         {
-            title: 'Format',
+            title: 'Location',
+            rules: [
+                'Summit Canton 46000 Summit Pkwy Canton, MI, 48188, United States'
+            ],
+        },
+        {
+            title: 'Format & Time Control',
             rules: [
                 '4 round Swiss, USCF rated tournament, OPEN, U1500, & U1000',
-                'Time Control: OPEN & U1500 G50; d5 / U1000 G25: d5',
+                'Time Control: OPEN & U1500 G50; d5',
+                'Time Control: U1000 G25; d5',
             ],
         },
         {
@@ -24,7 +31,9 @@ function Registration() {
             title: 'Registration',
             rules: [
                 'Registration via our website only, no in-person registration',
-                'OPEN & U1500: $25 U1000: $20 CASH ONLY pay on-site',
+                'Please Note: Registration is NOT possible if USCF membership has expired',
+                'OPEN & U1500: $25 CASH ONLY pay on-site',
+                'U1000: $20 CASH ONLY pay on-site',
                 'Open section for players above USCF 1500 rating ONLY',
                 'U1500 section for players above USCF 1000 rating ONLY',
                 'Last day to register is 2 days before tournament by 9 PM',
@@ -33,8 +42,8 @@ function Registration() {
         {
             title: 'Prizes',
             rules: [
-                'OPEN: 50% of entry free split between 1st, 2nd, 3rd.',
-                'U1500: 50% of entry free split between 1st, 2nd, 3rd.',
+                'OPEN: 50% of Total Prize money split between 1st, 2nd and 3rd places',
+                'U1500: 50% of Total Prize money split between 1st, 2nd and 3rd places',
                 'U1000: Trophies for 1st, 2nd, 3rd, 4th, 5th',
             ],
         },

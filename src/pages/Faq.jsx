@@ -6,11 +6,11 @@ function FAQ() {
     const questions = [
         {
             question: "What is a USCF ID?",
-            answer: "A USCF ID is a unique identification number assigned to members of the United States Chess Federation for tracking their games and memberships.",
+            answer: "A USCF ID is a unique identification number assigned to members of the United States Chess Federation.",
         },
         {
             question: "How do I register for a USCF membership?",
-            answer: "Go to https://new.uschess.org/ and then hit Join and then Become A Member and select a membership.",
+            answer: "Go to https://new.uschess.org/ select 'Join' and 'Become A Member'.",
         },
         {
             question: "Why does it say my USCF is expired?",
@@ -22,7 +22,7 @@ function FAQ() {
         },
         {
             question: "Can I play if I don't have a rating?",
-            answer: "Yes, if you don't have a rating you are considered unrated and will be assigned a rating of 101 at tournaments.",
+            answer: "Yes, you can play as long as your membership is current.",
         },
         {
             question: "I paid for/renewed a membership, but it still shows as expired or missing in your system?",
@@ -34,7 +34,7 @@ function FAQ() {
         },
         {
             question: "Do I need a chess set and clock to play in this tournament?",
-            answer: "No, however, it is strongly recommended as we don't have boards and clocks for everyone to use.",
+            answer: "No. However, it is strongly recommended as we don't provide boards and clocks.",
         },
     ];
 
