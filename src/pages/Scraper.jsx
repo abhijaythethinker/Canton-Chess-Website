@@ -122,7 +122,7 @@ function Scraper() {
     return (
         <div className="w-screen h-screen flex items-center justify-center bg-slate-50 p-5">
             <div className="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center 2xl:scale-150">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6">USCF ID Checker</h2>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6">Enter USCF ID & Check Membership</h2>
 
                 {/* Confirmation Message */}
                 {confirmationMessage && (
