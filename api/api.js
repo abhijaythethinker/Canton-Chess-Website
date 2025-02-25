@@ -1,6 +1,6 @@
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
+import chromium from '@sparticuz/chromium';
 
-// Web Scraping Handler for Vercel
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
@@ -16,8 +16,13 @@ export default async function handler(req, res) {
     try {
         console.log(`Processing USCF ID: ${uscfId}`);
 
-        // Start Puppeteer
-        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+        // Launch Puppeteer with Chromium
+        const browser = await puppeteer.launch({
+            args: chromium.args,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless
+        });
+
         const page = await browser.newPage();
 
         await page.goto('https://new.uschess.org/civicrm/player-search', { waitUntil: 'networkidle2' });

@@ -27,6 +27,7 @@ function Scraper() {
     const [confirmationMessage, setConfirmationMessage] = useState(''); // Confirmation message state
 
     const fetchMembershipInfo = async () => {
+        console.log('Fetching data...');
         setLoading(true);
         setError('');
         try {
@@ -34,34 +35,28 @@ function Scraper() {
                 setError('USCF ID is required');
                 return;
             }
-
-            // const response = await fetch('http://localhost:3000/get-membership-expiration', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ uscfId }),
-            // });
-
-            const response = await fetch('/get-membership-expiration', {
+    
+            console.log('Making fetch request...');
+            const response = await fetch('/api/get-membership-expiration', {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ uscfId }),
-              });              
-
+            });
+    
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
-
+    
             const data = await response.json();
+            console.log('Received data:', data);
             setExpirationDate(data.expirationDate || 'No data found');
             setPlayerName(data.playerName || 'Name not found');
-
+    
             const isExpired = new Date(data.expirationDate) < new Date();
             setIsValid(!isExpired);
-
+    
         } catch (error) {
             console.error('Error fetching data:', error);
             setError('USCF ID not found. Please check your input and try again.');
@@ -69,6 +64,7 @@ function Scraper() {
             setLoading(false);
         }
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
