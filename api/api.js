@@ -31,7 +31,8 @@ export default async function handler(req, res) {
         }
 
         const page = await browser.newPage();
-        await page.goto('https://new.uschess.org/civicrm/player-search', { waitUntil: 'networkidle2' });
+        await page.goto('https://new.uschess.org/civicrm/player-search', { waitUntil: 'networkidle0', timeout: 60000 });
+
 
         await page.type('#external-identifier-0', uscfId);
         await page.click('button[ng-click="$ctrl.onClickSearchButton()"]');
