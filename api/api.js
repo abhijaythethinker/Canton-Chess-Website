@@ -1,5 +1,6 @@
-import puppeteer from 'puppeteer-core';
-import chromium from 'chrome-aws-lambda';
+const puppeteer = require('puppeteer-core');
+const chrome = require('chrome-aws-lambda');
+
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -17,9 +18,9 @@ export default async function handler(req, res) {
         // Launch the browser with the executablePath from chrome-aws-lambda
         const browser = await puppeteer.launch({
             headless: true,
-            args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: await chromium.executablePath,
-            defaultViewport: chromium.defaultViewport,
+            args: [...chrome.args, '--no-sandbox', '--disable-setuid-sandbox'],
+            executablePath: await chrome.executablePath,
+            userDataDir: await chrome.executablePath
         });
 
         const page = await browser.newPage();
