@@ -18,10 +18,10 @@ export default async function handler(req, res) {
 
         // Launch Puppeteer with Chromium
         const browser = await puppeteer.launch({
-            args: chromium.args,
-            executablePath: await chromium.executablePath(),
-            headless: chromium.headless
+            headless: true, // make sure it's running in headless mode
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
         });
+        
 
         const page = await browser.newPage();
 
