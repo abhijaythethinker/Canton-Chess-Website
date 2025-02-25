@@ -1,6 +1,5 @@
-const puppeteer = require('puppeteer-core');
-const chrome = require('chrome-aws-lambda');
-
+const puppeteer = require('puppeteer');
+const chromium = require('@sparticuz/chromium');
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -15,16 +14,23 @@ export default async function handler(req, res) {
     try {
         console.log(`Processing USCF ID: ${uscfId}`);
 
-        // Launch the browser with the executablePath from chrome-aws-lambda
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: [...chrome.args, '--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: await chrome.executablePath,
-            userDataDir: await chrome.executablePath
-        });
+        let browser;
+        if (process.env.VERCEL) {
+            // Running on Vercel, use @sparticuz/chromium
+            await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf');
+            browser = await puppeteer.launch({
+                args: chromium.args,
+                defaultViewport: chromium.defaultViewport,
+                executablePath: await chromium.executablePath(),
+                headless: chromium.headless,
+                ignoreHTTPSErrors: true,
+            });
+        } else {
+            // Running locally, use Puppeteer's built-in Chromium
+            browser = await puppeteer.launch({ headless: true });
+        }
 
         const page = await browser.newPage();
-
         await page.goto('https://new.uschess.org/civicrm/player-search', { waitUntil: 'networkidle2' });
 
         await page.type('#external-identifier-0', uscfId);
