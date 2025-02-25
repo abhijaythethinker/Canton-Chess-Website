@@ -10,13 +10,13 @@ function About() {
             name: "Manmohan Das",
             pic: "/images/manmohanPic.jpg",
             role: "Chief Tournament Director",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem adipisci animi minus odio tempore asperiores rem! Eaque dolorum ut quidem fugit, dolore, iusto assumenda, beatae mollitia corporis et dolores ducimus.",
+            description: "I have been involved in running chess tournaments for several years. Also coached many primary, middle and high school teams within Plymouth Canton schools. Highest individual achievement, Michigan Class A champion.",
         },
         {
             name: "Ayush Das",
             pic: "/images/ayushPic.jpg",
             role: "Superstar House Player",
-            description: "Stud. A must watch player every tournament. Usually shows up late for round 1 due to morning coffee run. If you are not able to play in the tournament, catching an Ayush game is the next best thing.",
+            description: "I've been running a local chess tournament with my brother for almost two years, working alongside our dad to promote chess and inspire the youth in our community. My goal is to create an environment where players of all ages can develop their skills and passion for the game.",
         },
     ];
 
