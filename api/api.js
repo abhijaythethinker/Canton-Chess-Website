@@ -1,12 +1,10 @@
 import puppeteer from 'puppeteer-core';
-import chromium from '@sparticuz/chromium';
+import chromium from 'chrome-aws-lambda';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
-
-    console.log('Received request:', req.body);
 
     const { uscfId } = req.body;
     if (!uscfId) {
@@ -16,14 +14,13 @@ export default async function handler(req, res) {
     try {
         console.log(`Processing USCF ID: ${uscfId}`);
 
-        // Launch Puppeteer with Chromium
+        // Launch the browser with the executablePath from chrome-aws-lambda
         const browser = await puppeteer.launch({
             headless: true,
-            executablePath: '/usr/bin/chromium-browser',
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
+            args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
+            executablePath: await chromium.executablePath,
+            defaultViewport: chromium.defaultViewport,
         });
-        
-        
 
         const page = await browser.newPage();
 
