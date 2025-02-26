@@ -15,7 +15,7 @@ function About() {
         {
             name: "Ayush Das",
             pic: "/images/ayushPic.jpg",
-            role: "Cheif Tournament Director",
+            role: "Chief Tournament Director",
             description: "I've been running a local chess tournament with my brother for almost two years, working alongside our dad to promote chess and inspire the youth in our community. My goal is to create an environment where players of all ages can develop their skills and passion for the game.",
         },
     ];

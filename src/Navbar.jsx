@@ -26,7 +26,7 @@ function NavBar() {
                             <NavLink to="/about"><li className="list-none w-full text-center p-4 hover:bg-white hover:bg-opacity-10 transition-all cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>About</li></NavLink>
                             <NavLink to="/classes"><li className="list-none w-full text-center p-4 hover:bg-white hover:bg-opacity-10 transition-all cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>Classes</li></NavLink>
                             <NavLink to="/registration"><li className="list-none w-full text-center p-4 hover:bg-white hover:bg-opacity-10 transition-all cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>Registration</li></NavLink>
-                            <NavLink to="/faq"><li className="list-none w-full text-center p-4 hover:bg-white hover:bg-opacity-10 transition-all cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>Faq</li></NavLink>
+                            <NavLink to="/faq"><li className="list-none w-full text-center p-4 hover:bg-white hover:bg-opacity-10 transition-all cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>FAQ</li></NavLink>
                             <NavLink to="/contact"><li className="list-none w-full text-center p-4 hover:bg-white hover:bg-opacity-10 transition-all cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>Contact</li></NavLink>
                         </div>
                     )}
