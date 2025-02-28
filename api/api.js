@@ -16,7 +16,6 @@ export default async function handler(req, res) {
 
         let browser;
         if (process.env.VERCEL) {
-            // Running on Vercel, use @sparticuz/chromium
             await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf');
             browser = await puppeteer.launch({
                 args: chromium.args,
@@ -26,7 +25,6 @@ export default async function handler(req, res) {
                 ignoreHTTPSErrors: true,
             });
         } else {
-            // Running locally, use Puppeteer's built-in Chromium
             browser = await puppeteer.launch({ headless: true });
         }
 
