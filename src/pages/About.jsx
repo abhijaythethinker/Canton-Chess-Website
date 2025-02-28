@@ -1,4 +1,5 @@
 function About() {
+    // team member roles+descriptions
     const teamMembers = [
         {
             name: "Abhijay Das",
