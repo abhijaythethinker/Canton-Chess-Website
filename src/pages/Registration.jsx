@@ -53,9 +53,8 @@ function Registration() {
         <>
             {showRules ? (
                 <div className="min-h-screen flex items-center justify-center bg-slate-50 p-8 2xl:p-0 overflow-y-auto">
-                    <div className="w-full max-w-4xl bg-white p-6 sm:p-10 rounded-3xl shadow-xl flex flex-col items-center text-center space-y-8">
+                    <div className="w-full max-w-4xl bg-white p-6 sm:p-10 rounded-3xl shadow-xl flex flex-col items-center space-y-8">
                         <h2 className="text-3xl font-semibold text-green-700">Tournament Rules</h2>
-                        {/* <h2 className="text-2xl font-semibold text-green-700">February 16th</h2> */}
                         <div className="flex flex-col space-y-6 w-full">
                             {sections.map((section, index) => (
                                 <div key={index} className="bg-gray-50 p-6 rounded-lg shadow-md">

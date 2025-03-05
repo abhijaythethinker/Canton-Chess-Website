@@ -121,7 +121,7 @@ function Scraper() {
 
     return (
         <div className="w-screen h-screen flex items-center justify-center bg-slate-50 p-5">
-            <div className="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center 2xl:scale-150">
+            <div className="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center 2xl:scale-125">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-6">Enter USCF ID & Check Membership</h2>
 
                 {/* Confirmation Message */}
@@ -181,7 +181,7 @@ function Scraper() {
                 </div>
 
                 <div className="w-full">
-                    <p className="text-lg font-medium text-gray-800 mb-2">Date: {tmDate}</p>
+                    <p className="text-lg font-medium text-gray-800 mb-2">Tournament Date: {tmDate}</p>
                 </div>
 
                 <div className="w-full flex justify-around mb-4">
