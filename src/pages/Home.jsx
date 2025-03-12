@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion"
 
 function Home() {
 
@@ -6,7 +7,9 @@ function Home() {
         <>
             <div className="w-screen h-screen bg-slate-50">
                 {/* About Registration Buttons and Logo */}
-                <div className="sm:flex xl:flex-row flex-col bg-slate-50">
+                <div 
+                    className="sm:flex xl:flex-row flex-col bg-slate-50"
+                >
                     <div className="xl:w-1/2 xl:py-96 w-full h-96 flex flex-col items-center justify-center">
                         <h1 className="text-green-700 sm:text-7xl text-5xl mb-12 font-semibold">Canton Chess</h1>
                         <div className="flex sm:flex-row flex-col sm:gap-12 gap-4">
@@ -16,7 +19,7 @@ function Home() {
                     </div>
                     
                     <div className="xl:w-1/2 xl:py-96 w-full h-96 sm:h-96 md:py-80 sm:py-64 flex items-center justify-center">
-                        <img src="/images/logo.png" alt="Canton Chess Logo" className="flex items-center justify-center scale-75 sm:scale-50 2xl:scale-50 xl:scale-75 text-white"/>
+                        <img src="/images/logo.png" alt="Canton Chess Logo" className="flex items-center justify-center scale-75 sm:scale-50 2xl:scale-50 xl:scale-75 drop-shadow-lg"/>
                     </div>
                 </div>
 

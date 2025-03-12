@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
+
 function About() {
-    // team member roles+descriptions
+    // Team member roles + descriptions
     const teamMembers = [
         {
             name: "Abhijay Das",
@@ -22,31 +24,42 @@ function About() {
     ];
 
     return (
-        <div className="w-screen h-screen bg-slate-50">
-            <div className="w-screen h-fit bg-slate-50">
-                <div className="flex flex-col items-center">
-                    <h1 className="text-5xl my-12 text-green-700 font-semibold">About</h1>
+        <div className="w-screen min-h-screen bg-slate-50 flex flex-col items-center py-16">
+            {/* Page Title */}
+            <motion.h1 
+                initial={{ opacity: 0, y: -20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.5 }}
+                className="text-5xl text-green-700 font-semibold mb-12"
+            >
+                Meet Our Team
+            </motion.h1>
 
-                    {teamMembers.map((member, index) => (
-                        <div
-                            key={index}
-                            className="h-fit w-7/12 bg-white border border-gray-100 flex flex-col lg:flex-row items-center lg:items-start rounded-3xl shadow-xl p-5 mb-10 text-center"
-                        >
-                            <img
-                                className="rounded-full w-40 h-40 lg:w-56 lg:h-56 p-4"
-                                src={member.pic}
-                                alt={`${member.name}'s profile`}
-                            />
-                            <div className="lg:w-4/5 lg:h-56 flex flex-col justify-center items-center py-6">
-                                <h2 className="font-semibold mb-4">{member.name} - {member.role}</h2>
-                                <p className="font-semibold text-xs sm:text-sm lg:text-base px-4">{member.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+            {/* Team Members */}
+            <div className="w-full flex flex-wrap justify-center gap-10 px-6">
+                {teamMembers.map((member, index) => (
+                    <motion.div 
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ duration: 0.5, delay: index * 0.2 }}
+                        className="bg-white rounded-3xl shadow-lg w-full sm:w-10/12 md:w-7/12 lg:w-5/12 xl:w-1/3 p-6 flex flex-col items-center hover:scale-105 transition-transform"
+                    >
+                        {/* Profile Picture */}
+                        <img 
+                            className="rounded-full w-40 h-40 md:w-48 md:h-48"
+                            src={member.pic}
+                            alt={`${member.name}'s profile`}
+                        />
+                        {/* Name & Role */}
+                        <h2 className="mt-6 text-xl font-semibold text-green-700 text-center">{member.name}</h2>
+                        <h3 className="text-md font-medium text-gray-600 mb-4">{member.role}</h3>
+                        {/* Description */}
+                        <p className="text-center text-gray-700 px-4">{member.description}</p>
+                    </motion.div>
+                ))}
             </div>
         </div>
-
     );
 }
 
