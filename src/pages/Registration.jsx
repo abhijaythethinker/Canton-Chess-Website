@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Scraper from './Scraper.jsx';
+import { motion } from 'framer-motion';
 
 function Registration() {
     const [showRules, setShowRules] = useState(true);
@@ -54,16 +55,31 @@ function Registration() {
             {showRules ? (
                 <div className="min-h-screen flex items-center justify-center bg-slate-50 p-8 overflow-y-auto">
                     <div className="w-full max-w-4xl bg-white p-6 sm:p-10 rounded-3xl shadow-xl flex flex-col items-center space-y-8">
-                        <h2 className="text-3xl font-semibold text-green-700">Tournament Rules</h2>
+                        <motion.h2 
+                            initial={{ opacity: 0, y: -20 }} 
+                            animate={{ opacity: 1, y: 0 }} 
+                            transition={{ duration: 0.5 }} 
+                            className="text-3xl font-semibold text-green-700">Tournament Rules
+                        </motion.h2>
                         <div className="flex flex-col space-y-6 w-full">
                             {sections.map((section, index) => (
                                 <div key={index} className="bg-gray-50 p-6 rounded-lg shadow-md">
-                                    <h3 className="text-2xl font-semibold text-green-700 mb-4">{section.title}</h3>
-                                    <ul className="list-disc text-left text-base sm:text-lg text-gray-800 space-y-2 pl-5">
+                                    <motion.h3
+                                        initial={{ opacity: 0, y: -20 }} 
+                                        animate={{ opacity: 1, y: 0 }} 
+                                        transition={{ duration: 0.5 }} 
+                                        className="text-2xl font-semibold text-green-700 mb-4">{section.title}
+                                    </motion.h3>
+                                    <motion.ul 
+                                         initial={{ opacity: 0, x: -20 }} 
+                                         animate={{ opacity: 1, x: 0 }} 
+                                         transition={{ duration: 0.5 }} 
+                                        className="list-disc text-left text-base sm:text-lg text-gray-800 space-y-2 pl-5"
+                                    >
                                         {section.rules.map((rule, ruleIndex) => (
                                             <li key={ruleIndex}>{rule}</li>
                                         ))}
-                                    </ul>
+                                    </motion.ul>
                                 </div>
                             ))}
                         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { motion } from 'framer-motion';
 function FAQ() {
     const [openQuestion, setOpenQuestion] = useState(null);
 
@@ -50,8 +50,11 @@ function FAQ() {
                 </h1>
 
                 {questions.map((q, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        initial={{ opacity: 0, x: -20 }} 
+                        animate={{ opacity: 1, x: 0 }} 
+                        transition={{ duration: 0.5 }}
                         className="h-fit w-full sm:w-10/12 md:w-3/4 lg:w-2/3 bg-white border border-gray-100 flex flex-col items-center justify-center rounded-3xl shadow-xl p-5 mb-10"
                     >
                         <div className="flex items-center justify-between w-full px-5">
@@ -65,7 +68,7 @@ function FAQ() {
                         {openQuestion === index && (
                             <p className="my-4 font-medium text-sm sm:text-base md:text-lg text-center">{q.answer}</p>
                         )}
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>
