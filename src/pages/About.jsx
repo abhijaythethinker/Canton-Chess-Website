@@ -7,7 +7,7 @@ function About() {
             name: "Abhijay Das",
             pic: "/images/abhijayPic.png",
             role: "Chief Tournament Director",
-            description: "I've been running this tournament for almost two years, aiming to inspire youth and promote chess in my community. My goal is to create an environment where players of all ages can develop their skills and passion for the game.",
+            description: "Chess has been a very enjoyable journey for me since childhood. I have participated in many scholastic tournaments at the State and National level. As a Canton Chess Chief TD, my goal is to inspire youth and promote chess in the community.",
         },
         {
             name: "Manmohan Das",
@@ -19,7 +19,7 @@ function About() {
             name: "Ayush Das",
             pic: "/images/ayushPic.jpg",
             role: "Chief Tournament Director",
-            description: "I've been running a local chess tournament with my brother for almost two years, working alongside our dad to promote chess and inspire the youth in our community. My goal is to create an environment where players of all ages can develop their skills and passion for the game.",
+            description: "I’ve had a passion for chess since my childhood. I’ve won many tournaments at State and National level. I aim to foster an environment for players of all ages to develop their skills and passion for the game.",
         },
     ];
 
