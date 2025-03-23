@@ -32,7 +32,7 @@ function Home() {
                         <motion.img 
                         initial={{ opacity: 0 }} 
                         animate={{ opacity: 1 }} 
-                        transition={{ duration: 1.25 }} 
+                        transition={{ duration: 1 }} 
                         src="/images/logo.png" alt="Canton Chess Logo" className="flex items-center justify-center scale-75 sm:scale-50 2xl:scale-50 xl:scale-75 drop-shadow-lg"/>
                     </div>
                 </div>
