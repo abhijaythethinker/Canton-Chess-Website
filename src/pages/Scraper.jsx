@@ -86,7 +86,7 @@ function Scraper() {
                 setTmDate('');
     
                 setConfirmationMessage(`${playerName} registered for ${sectionName} section on ${tmDate}!`);
-                setTimeout(() => setConfirmationMessage(''), 4000); // Clear message after 3 seconds
+                setTimeout(() => setConfirmationMessage(''), 10000); // Clear message after 3 seconds
     
             } catch (error) {
                 console.error("Error submitting data: ", error);
