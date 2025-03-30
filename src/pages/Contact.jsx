@@ -66,7 +66,7 @@ function Contact() {
                             type="text" className="block p-3 w-full text-sm text-black bg-slate-50 rounded-lg shadow-sm border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50 px-4 py-2" placeholder="First Name Last Name" required
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <label className="block mb-2 text-sm font-medium text-green-700">USCF ID</label>
                             <input 
                             value={uscf}
@@ -77,7 +77,7 @@ function Contact() {
                             }}
                             type="text" className="block p-3 w-full text-sm text-black bg-slate-50 rounded-lg shadow-sm border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50 px-4 py-2" placeholder="12345678" required
                             />
-                        </div>
+                        </div> */}
                         <div>
                             <label className="block mb-2 text-sm font-medium text-green-700">Your email</label>
                             <input
