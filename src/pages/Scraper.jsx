@@ -21,7 +21,7 @@ function Scraper() {
     const [expirationDate, setExpirationDate] = useState('');
     const [playerName, setPlayerName] = useState('');
     const[email, SetEmail] = useState('');
-    const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const isEmailValid = emailPattern.test(email);
     const [sectionName, setSectionName] = useState('');
     const [tmDate, setTmDate] = useState('');
