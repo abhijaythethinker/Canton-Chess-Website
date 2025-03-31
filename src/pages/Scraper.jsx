@@ -136,6 +136,7 @@ function Scraper() {
             })
             .catch((error) => {
                 console.error('Error sending email:', error);
+                SetEmail('');
             });
     };
 
