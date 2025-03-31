@@ -79,6 +79,7 @@ function Scraper() {
                     expirationDate,
                     uscfId,
                     sectionName,
+                    email,
                 });
     
                 setPlayerName('');
@@ -102,6 +103,7 @@ function Scraper() {
                     expirationDate,
                     uscfId,
                     sectionName,
+                    email,
                 });
     
                 setPlayerName('');
