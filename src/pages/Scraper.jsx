@@ -21,6 +21,8 @@ function Scraper() {
     const [expirationDate, setExpirationDate] = useState('');
     const [playerName, setPlayerName] = useState('');
     const[email, SetEmail] = useState('');
+    const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
+    const isEmailValid = emailPattern.test(email);
     const [sectionName, setSectionName] = useState('');
     const [tmDate, setTmDate] = useState('');
     const [loading, setLoading] = useState(false);
@@ -231,9 +233,9 @@ function Scraper() {
 
                 <button
                     onClick={handleSubmit}
-                    disabled={isExpired || !uscfId || !expirationDate || !playerName || sectionName.length === 0 || tmDate.length === 0 || email.length === 0}
+                    disabled={isExpired || !uscfId || !expirationDate || !playerName || !isEmailValid || sectionName.length === 0 || tmDate.length === 0 || email.length === 0}
                     className={`w-full py-3 mt-6 rounded-lg  border-2 font-semibold ${
-                        isExpired || !uscfId || !expirationDate || !playerName || sectionName.length === 0 || tmDate.length === 0 || email.length === 0
+                        isExpired || !uscfId || !expirationDate || !playerName || !isEmailValid || sectionName.length === 0 || tmDate.length === 0 || email.length === 0
                             ? 'bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed'
                             : 'bg-green-700 text-white border-green-700 hover:text-green-700 hover:bg-white hover:border-green-700 transition-colors duration-400'
                     }`}
