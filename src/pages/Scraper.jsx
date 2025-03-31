@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser'
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
@@ -19,6 +20,7 @@ function Scraper() {
     const [uscfId, setUscfId] = useState('');
     const [expirationDate, setExpirationDate] = useState('');
     const [playerName, setPlayerName] = useState('');
+    const[email, SetEmail] = useState('');
     const [sectionName, setSectionName] = useState('');
     const [tmDate, setTmDate] = useState('');
     const [loading, setLoading] = useState(false);
@@ -114,14 +116,32 @@ function Scraper() {
             } catch (error) {
                 console.error("Error submitting data: ", error);
             }
-        }
+        }    
+
+        const templateParameters = {
+            name: playerName,
+            date_name: tmDate,
+            section_name: sectionName,
+            uscf_id: uscfId,
+            email: email,
+        };
+    
+        emailjs
+            .send(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_REGISTRATION_ID, templateParameters, import.meta.env.VITE_PUBLIC_KEY)
+            .then((response) => {
+                console.log('Email sent successfully!', response);
+                SetEmail('');
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+            });
     };
 
     const isExpired = new Date(expirationDate) < new Date();
 
     return (
         <div className="w-screen h-screen flex items-center justify-center bg-slate-50 p-5">
-            <div className="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center 2xl:scale-125">
+            <div className="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center 2xl:scale-125 overflow-auto max-h-screen">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-6">Enter USCF ID & Check Membership</h2>
 
                 {/* Confirmation Message */}
@@ -195,6 +215,15 @@ function Scraper() {
                         className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
                         June 21
                     </button>
+                </div>
+
+                <div className="w-full">
+                    <p className="text-lg font-medium text-gray-800 mb-2">Email:</p>
+                    <input
+                        value={email}
+                        onChange={(e) => SetEmail(e.target.value)}
+                        type="email" className= "border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50 px-4 py-2 text-black text-sm rounded-lg shadow-sm block w-full p-2.5 mx-50" placeholder="name@gmail.com" required
+                    />
                 </div>
 
                 <button

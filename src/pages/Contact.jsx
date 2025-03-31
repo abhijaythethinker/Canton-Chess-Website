@@ -19,7 +19,7 @@ function Contact() {
         };
     
         emailjs
-            .send(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID, templateParameters, import.meta.env.VITE_PUBLIC_KEY)
+            .send(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_CONTACT_ID, templateParameters, import.meta.env.VITE_PUBLIC_KEY)
             .then((response) => {
                 console.log('Email sent successfully!', response);
                 const alertBox = document.getElementById('successAlert');
