@@ -46,7 +46,7 @@ function Home() {
                 >
                     <h1 className="text-5xl font-semibold mb-6 text-green-700">About Us</h1>
                     <h1 className="text-2xl text-center mb-6 text-green-700">Promoting Competitive Chess</h1>
-                    <h1 className="w-3/4 text-center text-green-700">Each month, we host tournaments inspiring players of all levels to engage with the game. Our goal is to create a fantastic experience where everyone can have fun and enjoy the competition</h1>
+                    <h1 className="w-3/4 text-center text-green-700">Each month, we host tournaments inspiring players of all levels to engage with the game. Our goal is to create a fantastic experience where everyone can have fun and enjoy the competition.</h1>
                 </motion.div>
 
                 {/* Copyright */}

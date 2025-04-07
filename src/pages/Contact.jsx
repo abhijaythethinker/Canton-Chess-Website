@@ -66,18 +66,6 @@ function Contact() {
                             type="text" className="block p-3 w-full text-sm text-black bg-slate-50 rounded-lg shadow-sm border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50 px-4 py-2" placeholder="First Name Last Name" required
                             />
                         </div>
-                        {/* <div>
-                            <label className="block mb-2 text-sm font-medium text-green-700">USCF ID</label>
-                            <input 
-                            value={uscf}
-                            maxLength="8"
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                SetUscf(value);
-                            }}
-                            type="text" className="block p-3 w-full text-sm text-black bg-slate-50 rounded-lg shadow-sm border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50 px-4 py-2" placeholder="12345678" required
-                            />
-                        </div> */}
                         <div>
                             <label className="block mb-2 text-sm font-medium text-green-700">Your email</label>
                             <input
@@ -96,9 +84,9 @@ function Contact() {
                         </div>
                         <div className="flex justify-center">
                             <button 
-                            disabled={uscf.length !== 8} // Disable if not exactly 8 characters
+                            disabled={name.length === 0 || email.length === 0 || message.length === 0}
                             className={`${
-                                uscf.length === 8 ? 'py-3 px-5 text-sm font-medium text-center text-white rounded-lg shadow-lg sm:w-fit bg-green-700 border-2 border-green-700 hover:bg-green-800 hover:border-green-800 transition-colors duration-400 cursor-pointer' : 'py-3 px-5 text-sm font-medium text-center text-gray-500 rounded-lg shadow-lg sm:w-fit bg-gray-300 border-2 border-gray-300 cursor-not-allowed'
+                                name.length === 0 || email.length === 0 || message.length === 0 ? 'py-3 px-5 text-sm font-medium text-center text-gray-500 rounded-lg shadow-lg sm:w-fit bg-gray-300 border-2 border-gray-300 cursor-not-allowed' : 'py-3 px-5 text-sm font-medium text-center text-white rounded-lg shadow-lg sm:w-fit bg-green-700 border-2 border-green-700 hover:bg-green-800 hover:border-green-800 transition-colors duration-400 cursor-pointer'
                             }`}
                             type="submit">
                             Send message
