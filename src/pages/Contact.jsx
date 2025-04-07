@@ -4,7 +4,6 @@ import emailjs from '@emailjs/browser'
 function Contact() {
 
     const[name, SetName] = useState('');
-    const[uscf, SetUscf] = useState('');
     const[email, SetEmail] = useState('');
     const[message, SetMessage] = useState('');
 
@@ -12,7 +11,6 @@ function Contact() {
         e.preventDefault();
         const templateParameters = {
             from_name: name,
-            from_uscf: uscf,
             from_email: email,
             to_name: 'Canton Chess',
             message: message,
@@ -33,7 +31,6 @@ function Contact() {
                     alertBox.classList.add('opacity-0', 'translate-x-5');
                 }, 3000);
                 SetName('');
-                SetUscf('');
                 SetEmail('');
                 SetMessage('');
             })
