@@ -74,9 +74,9 @@ function Scraper() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (tmDate == 'July 19') {
+        if (tmDate == 'Aug 16') {
             try {
-                const collectionRef = collection(firestore, "July DB");
+                const collectionRef = collection(firestore, "Aug DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
@@ -98,9 +98,9 @@ function Scraper() {
                 console.error("Error submitting data: ", error);
             }
         }
-        if (tmDate == 'Aug 16') {
+        if (tmDate == 'Sep 13') {
             try {
-                const collectionRef = collection(firestore, "Aug DB");
+                const collectionRef = collection(firestore, "Sep DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
@@ -212,14 +212,14 @@ function Scraper() {
 
                 <div className="w-full flex justify-around mb-4">
                     <button
-                        onClick={() => setTmDate('July 19')}
-                        className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
-                        July 19
-                    </button>
-                    <button
                         onClick={() => setTmDate('Aug 16')}
                         className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
                         Aug 16
+                    </button>
+                    <button
+                        onClick={() => setTmDate('Sep 13')}
+                        className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
+                        Sep 13
                     </button>
                 </div>
 
