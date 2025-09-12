@@ -74,9 +74,9 @@ function Scraper() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (tmDate == 'Sep 13') {
+        if (tmDate == 'Oct 25') {
             try {
-                const collectionRef = collection(firestore, "Sep DB");
+                const collectionRef = collection(firestore, "Oct DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
@@ -98,9 +98,9 @@ function Scraper() {
                 console.error("Error submitting data: ", error);
             }
         }
-        if (tmDate == 'Oct 25') {
+        if (tmDate == 'Nov 15') {
             try {
-                const collectionRef = collection(firestore, "Oct DB");
+                const collectionRef = collection(firestore, "Nov DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
