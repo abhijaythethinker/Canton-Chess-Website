@@ -55,10 +55,13 @@ export default async function handler(req, res) {
                 playerName = nameElement.textContent.trim();
             }
 
-            const ratingCell = document.querySelector('table tr:nth-child(2) td:nth-child(3) span.ng-binding.ng-scope');
-            playerRating = ratingCell && ratingCell.textContent.trim() !== '' 
-                ? ratingCell.textContent.trim() 
-                : '101';
+            const row = document.querySelector('tr[ng-repeat="(rowIndex, row) in $ctrl.results"]');
+            if (!row) return { playerRating: '101' };
+
+            const ratingTd = row.querySelectorAll('td')[2];
+            const ratingSpan = ratingTd ? ratingTd.querySelector('span.ng-binding.ng-scope') : null;
+
+            playerRating = ratingSpan ? ratingSpan.textContent.trim() : '101';
 
             return { expirationDate, playerName, playerRating };
         });
