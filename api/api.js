@@ -41,6 +41,7 @@ export default async function handler(req, res) {
             const elements = Array.from(document.querySelectorAll('span.ng-binding.ng-scope'));
             let expirationDate = null;
             let playerName = null;
+            let playerRating = null;
 
             for (let el of elements) {
                 const text = el.textContent.trim();
@@ -54,7 +55,12 @@ export default async function handler(req, res) {
                 playerName = nameElement.textContent.trim();
             }
 
-            return { expirationDate, playerName };
+            const ratingCell = document.querySelector('table tr:nth-child(2) td:nth-child(3) span.ng-binding.ng-scope');
+            playerRating = ratingCell && ratingCell.textContent.trim() !== '' 
+                ? ratingCell.textContent.trim() 
+                : '101';
+
+            return { expirationDate, playerName, playerRating };
         });
 
         await browser.close();

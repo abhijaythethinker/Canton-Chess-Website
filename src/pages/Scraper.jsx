@@ -24,6 +24,7 @@ function Scraper() {
     const[email, SetEmail] = useState('');
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const isEmailValid = emailPattern.test(email);
+    const [playerRating, setPlayerRating] = useState('');
     const [sectionName, setSectionName] = useState('');
     const [tmDate, setTmDate] = useState('');
     const [loading, setLoading] = useState(false);
@@ -58,6 +59,7 @@ function Scraper() {
             console.log('Received data:', data);
             setExpirationDate(data.expirationDate || 'No data found');
             setPlayerName(data.playerName || 'Name not found');
+            setPlayerRating(data.playerRating || '');
     
             const isExpired = new Date(data.expirationDate) < new Date();
             setIsValid(!isExpired);
@@ -83,6 +85,7 @@ function Scraper() {
                     uscfId,
                     sectionName,
                     email,
+                    playerRating,
                 });
     
                 setPlayerName('');
@@ -107,6 +110,7 @@ function Scraper() {
                     uscfId,
                     sectionName,
                     email,
+                    playerRating,
                 });
     
                 setPlayerName('');
