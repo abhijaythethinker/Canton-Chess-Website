@@ -215,11 +215,11 @@ function Scraper() {
                 </div>
 
                 <div className="w-full flex justify-around mb-4">
-                    <button
+                    {/* <button
                         onClick={() => setTmDate('Oct 25')}
                         className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
                         Oct 25
-                    </button>
+                    </button> */}
                     <button
                         onClick={() => setTmDate('Nov 15')}
                         className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
