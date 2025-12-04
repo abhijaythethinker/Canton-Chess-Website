@@ -76,9 +76,9 @@ function Scraper() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (tmDate == 'Oct 25') {
+        if (tmDate == 'Jan 25') {
             try {
-                const collectionRef = collection(firestore, "Oct DB");
+                const collectionRef = collection(firestore, "Jan DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
@@ -101,9 +101,9 @@ function Scraper() {
                 console.error("Error submitting data: ", error);
             }
         }
-        if (tmDate == 'Nov 15') {
+        if (tmDate == 'Feb 21') {
             try {
-                const collectionRef = collection(firestore, "Nov DB");
+                const collectionRef = collection(firestore, "Feb DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
@@ -150,115 +150,103 @@ function Scraper() {
     const isExpired = new Date(expirationDate) < new Date();
 
     return (
-        // <div className="w-screen h-screen flex items-center justify-center bg-slate-50 p-5">
-        //     <div className="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center 2xl:scale-125 overflow-auto max-h-screen">
-        //         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Enter USCF ID & Check Membership</h2>
-
-        //         {/* Confirmation Message */}
-        //         {confirmationMessage && (
-        //             <div className="w-full bg-green-200 text-green-700 py-3 px-4 rounded-lg mb-4 text-center font-medium shadow-md shadow-green-200/70">
-        //                 {confirmationMessage}
-        //             </div>
-        //         )}
-
-        //         <input
-        //             className="w-full text-center text-lg py-3 px-6 mb-6 rounded-lg shadow-sm border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50"
-        //             type="text"
-        //             value={uscfId}
-        //             maxLength="8"
-        //             onChange={(e) => {
-        //                 setUscfId(e.target.value);
-        //                 setPlayerName('');
-        //                 setExpirationDate('');
-        //                 setSectionName('');
-        //                 setTmDate('');
-        //             }}
-        //             placeholder="Enter USCF ID"
-        //         />
-        //         <button
-        //             onClick={fetchMembershipInfo}
-        //             disabled={loading || !(uscfId.length === 8 && parseInt(uscfId, 10) > 9999999)}
-        //             className={`w-full py-3 mb-6 rounded-lg border-2 font-semibold  transition-colors duration-400 ${
-        //                 !loading && uscfId.length === 8 && parseInt(uscfId, 10) > 9999999 ? 'bg-green-700 text-white hover:bg-white hover:text-green-700 border-green-700 cursor-pointer' : 'bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed'
-        //             }`}
-        //         >
-        //             {loading ? 'Loading...' : 'Check Membership'}
-        //         </button>
-        //         {error && <p className="text-red-600 mb-4">{error}</p>}
-
-        //         <div className="w-full">
-        //             <p className="text-lg font-medium text-gray-800 mb-2">Name: {playerName}</p>
-        //             <p className="text-lg font-medium text-gray-800 mb-2">Expiration Date: {expirationDate}</p>
-        //             <p className="text-lg font-medium text-gray-800 mb-2">Section: {sectionName}</p>
-        //         </div>
-
-        //         <div className="w-full flex justify-around mb-4">
-        //             <button
-        //                 onClick={() => setSectionName('U1000')}
-        //                 className="py-3 px-4 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
-        //                 U1000
-        //             </button>
-        //             <button
-        //                 onClick={() => setSectionName('U1500')}
-        //                 className="py-3 px-4 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
-        //                 U1500
-        //             </button>
-        //             <button
-        //                 onClick={() => setSectionName('OPEN')}
-        //                 className="py-3 px-4 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
-        //                 OPEN
-        //             </button>
-        //         </div>
-
-        //         <div className="w-full">
-        //             <p className="text-lg font-medium text-gray-800 mb-2">Tournament Date: {tmDate}</p>
-        //         </div>
-
-        //         <div className="w-full flex justify-around mb-4">
-        //             {/* <button
-        //                 onClick={() => setTmDate('Oct 25')}
-        //                 className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
-        //                 Oct 25
-        //             </button> */}
-        //             <button
-        //                 onClick={() => setTmDate('Nov 15')}
-        //                 className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
-        //                 Nov 15
-        //             </button>
-        //         </div>
-
-        //         <div className="w-full">
-        //             <p className="text-lg font-medium text-gray-800 mb-2">Email:</p>
-        //             <input
-        //                 value={email}
-        //                 onChange={(e) => SetEmail(e.target.value)}
-        //                 type="email" className= "border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50 px-4 py-2 text-black text-sm rounded-lg shadow-sm block w-full p-2.5 mx-50" placeholder="name@gmail.com" required
-        //             />
-        //         </div>
-
-        //         <button
-        //             onClick={handleSubmit}
-        //             disabled={isExpired || !uscfId || !expirationDate || !playerName || !isEmailValid || sectionName.length === 0 || tmDate.length === 0 || email.length === 0}
-        //             className={`w-full py-3 mt-6 rounded-lg  border-2 font-semibold ${
-        //                 isExpired || !uscfId || !expirationDate || !playerName || !isEmailValid || sectionName.length === 0 || tmDate.length === 0 || email.length === 0
-        //                     ? 'bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed'
-        //                     : 'bg-green-700 text-white border-green-700 hover:text-green-700 hover:bg-white hover:border-green-700 transition-colors duration-400'
-        //             }`}
-        //         >
-        //             {isExpired ? 'USCF ID Expired' : 'Register'}
-        //         </button>
-        //     </div>
-        // </div>
         <div className="w-screen h-screen flex items-center justify-center bg-slate-50 p-5">
-            <div className="h-fit md:w-fit w-3/4 text-center bg-white border border-gray-100 flex flex-row items-center rounded-3xl shadow-xl mb-10 overflow-hidden">
-                <div className="p-10">
-                    <h2 className="font-semibold md:w-96 w-full">
-                        Registration for our November tournament is closed. 
-                        Our next tournament will be in January 2026.
-                        We are currently updating our registration page.
-                        This page will be working again soon.
-                    </h2>
+            <div className="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center 2xl:scale-125 overflow-auto max-h-screen">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6">Enter USCF ID & Check Membership</h2>
+
+                {/* Confirmation Message */}
+                {confirmationMessage && (
+                    <div className="w-full bg-green-200 text-green-700 py-3 px-4 rounded-lg mb-4 text-center font-medium shadow-md shadow-green-200/70">
+                        {confirmationMessage}
+                    </div>
+                )}
+
+                <input
+                    className="w-full text-center text-lg py-3 px-6 mb-6 rounded-lg shadow-sm border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50"
+                    type="text"
+                    value={uscfId}
+                    maxLength="8"
+                    onChange={(e) => {
+                        setUscfId(e.target.value);
+                        setPlayerName('');
+                        setExpirationDate('');
+                        setSectionName('');
+                        setTmDate('');
+                    }}
+                    placeholder="Enter USCF ID"
+                />
+                <button
+                    onClick={fetchMembershipInfo}
+                    disabled={loading || !(uscfId.length === 8 && parseInt(uscfId, 10) > 9999999)}
+                    className={`w-full py-3 mb-6 rounded-lg border-2 font-semibold  transition-colors duration-400 ${
+                        !loading && uscfId.length === 8 && parseInt(uscfId, 10) > 9999999 ? 'bg-green-700 text-white hover:bg-white hover:text-green-700 border-green-700 cursor-pointer' : 'bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed'
+                    }`}
+                >
+                    {loading ? 'Loading...' : 'Check Membership'}
+                </button>
+                {error && <p className="text-red-600 mb-4">{error}</p>}
+
+                <div className="w-full">
+                    <p className="text-lg font-medium text-gray-800 mb-2">Name: {playerName}</p>
+                    <p className="text-lg font-medium text-gray-800 mb-2">Expiration Date: {expirationDate}</p>
+                    <p className="text-lg font-medium text-gray-800 mb-2">Section: {sectionName}</p>
                 </div>
+
+                <div className="w-full flex justify-around mb-4">
+                    <button
+                        onClick={() => setSectionName('U1000')}
+                        className="py-3 px-4 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
+                        U1000
+                    </button>
+                    <button
+                        onClick={() => setSectionName('U1500')}
+                        className="py-3 px-4 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
+                        U1500
+                    </button>
+                    <button
+                        onClick={() => setSectionName('OPEN')}
+                        className="py-3 px-4 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
+                        OPEN
+                    </button>
+                </div>
+
+                <div className="w-full">
+                    <p className="text-lg font-medium text-gray-800 mb-2">Tournament Date: {tmDate}</p>
+                </div>
+
+                <div className="w-full flex justify-around mb-4">
+                    <button
+                        onClick={() => setTmDate('Jan 25')}
+                        className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
+                        Jan 25
+                    </button>
+                    <button
+                        onClick={() => setTmDate('Feb 21')}
+                        className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
+                        Feb 21
+                    </button>
+                </div>
+
+                <div className="w-full">
+                    <p className="text-lg font-medium text-gray-800 mb-2">Email:</p>
+                    <input
+                        value={email}
+                        onChange={(e) => SetEmail(e.target.value)}
+                        type="email" className= "border-2 border-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-500/60 focus:border-slate-50 px-4 py-2 text-black text-sm rounded-lg shadow-sm block w-full p-2.5 mx-50" placeholder="name@gmail.com" required
+                    />
+                </div>
+
+                <button
+                    onClick={handleSubmit}
+                    disabled={isExpired || !uscfId || !expirationDate || !playerName || !isEmailValid || sectionName.length === 0 || tmDate.length === 0 || email.length === 0}
+                    className={`w-full py-3 mt-6 rounded-lg  border-2 font-semibold ${
+                        isExpired || !uscfId || !expirationDate || !playerName || !isEmailValid || sectionName.length === 0 || tmDate.length === 0 || email.length === 0
+                            ? 'bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed'
+                            : 'bg-green-700 text-white border-green-700 hover:text-green-700 hover:bg-white hover:border-green-700 transition-colors duration-400'
+                    }`}
+                >
+                    {isExpired ? 'USCF ID Expired' : 'Register'}
+                </button>
             </div>
         </div>
     );
