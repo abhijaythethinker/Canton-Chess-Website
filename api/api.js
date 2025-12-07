@@ -6,6 +6,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
+    //uscf id
     const { uscfId } = req.body;
     if (!uscfId) {
         return res.status(400).json({ error: 'USCF ID is required' });
