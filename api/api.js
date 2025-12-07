@@ -29,41 +29,41 @@ export default async function handler(req, res) {
         }
 
         const page = await browser.newPage();
-        await page.goto('https://new.uschess.org/civicrm/player-search', { waitUntil: 'networkidle0', timeout: 60000 });
+        await page.goto(`https://ratings.uschess.org/?fuzzy=${uscfId}`, { waitUntil: 'networkidle0', timeout: 60000 });
 
+        await page.waitForFunction(() => {
+            return document.querySelector('span.font-regular') || document.querySelector('p');
+        }, { timeout: 40000 });  
 
-        await page.type('#external-identifier-0', uscfId);
-        await page.click('button[ng-click="$ctrl.onClickSearchButton()"]');
-
-        await page.waitForSelector('span.ng-binding.ng-scope', { timeout: 10000 });
+        const noResults = await page.$('p');
+        if (noResults) {
+            const text = await page.evaluate(el => el.textContent, noResults);
+            if (text.includes('No results found')) {
+                await browser.close();
+                return res.status(404).json({ error: 'Player information not found' });
+            }
+        }
 
         const result = await page.evaluate(() => {
-            const elements = Array.from(document.querySelectorAll('span.ng-binding.ng-scope'));
             let expirationDate = null;
             let playerName = null;
-            let playerRating = null;
 
-            for (let el of elements) {
-                const text = el.textContent.trim();
-                if (/^\d{2}\/\d{2}\/\d{4}$/.test(text)) {
-                    expirationDate = text;
+            const firstNameEl = document.querySelector('span.font-regular');
+            const lastNameEl = document.querySelector('span.font-semibold');
+            if (firstNameEl && lastNameEl) {
+                playerName = `${firstNameEl.textContent.trim()} ${lastNameEl.textContent.trim()}`;
+            }
+
+            const expWrapper = Array.from(document.querySelectorAll('span')).find(el => el.textContent.includes('Exp:'));
+
+            if (expWrapper) {
+                const expEl = expWrapper.querySelector('span.font-mono');
+                if (expEl) {
+                expirationDate = expEl.textContent.trim();
                 }
             }
 
-            const nameElement = document.querySelector('span[ng-repeat="link in colData.links"] a');
-            if (nameElement) {
-                playerName = nameElement.textContent.trim();
-            }
-
-            const row = document.querySelector('tr[ng-repeat="(rowIndex, row) in $ctrl.results"]');
-            if (!row) return { playerRating: '101' };
-
-            const ratingTd = row.querySelectorAll('td')[2];
-            const ratingSpan = ratingTd ? ratingTd.querySelector('span.ng-binding.ng-scope') : null;
-
-            playerRating = ratingSpan ? ratingSpan.textContent.trim() : '101';
-
-            return { expirationDate, playerName, playerRating };
+            return { expirationDate, playerName };
         });
 
         await browser.close();
