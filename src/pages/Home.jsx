@@ -5,7 +5,7 @@ function Home() {
 
     return(
         <>
-            <div className="w-screen min-h-screen bg-gradient-to-b from-black via-gray-900 to-gray-800">
+            <div className="w-screen min-h-screen bg-slate-50">
                 {/* About Registration Buttons and Logo */}
                 <div 
                     className="sm:flex xl:flex-row flex-col"
