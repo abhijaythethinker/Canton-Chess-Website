@@ -74,9 +74,9 @@ function Scraper() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (tmDate == 'Feb 21') {
+        if (tmDate == 'Mar 28') {
             try {
-                const collectionRef = collection(firestore, "Feb DB");
+                const collectionRef = collection(firestore, "Mar DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
@@ -98,9 +98,9 @@ function Scraper() {
                 console.error("Error submitting data: ", error);
             }
         }
-        if (tmDate == 'Mar 28') {
+        if (tmDate == 'Apr 18') {
             try {
-                const collectionRef = collection(firestore, "Mar DB");
+                const collectionRef = collection(firestore, "Apr26 DB");
                 await addDoc(collectionRef, {
                     playerName,
                     expirationDate,
@@ -212,14 +212,14 @@ function Scraper() {
 
                 <div className="w-full flex justify-around mb-4">
                     <button
-                        onClick={() => setTmDate('Feb 21')}
-                        className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
-                        Feb 21
-                    </button>
-                    <button
                         onClick={() => setTmDate('Mar 28')}
                         className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
                         Mar 28
+                    </button>
+                    <button
+                        onClick={() => setTmDate('Apr 18')}
+                        className="py-3 px-8 rounded-lg bg-green-700 text-white border-2 border-green-700 hover:bg-white hover:text-green-700 font-semibold transition-colors duration-400">
+                        Apr 18
                     </button>
                 </div>
 
