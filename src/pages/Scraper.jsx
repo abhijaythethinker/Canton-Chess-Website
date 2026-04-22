@@ -49,12 +49,13 @@ function Scraper() {
                 },
                 body: JSON.stringify({ uscfId }),
             });
-    
-            if (!response.ok) {
-                throw new Error('Failed to fetch data');
-            }
-    
+
             const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to fetch data');
+            }
+
             console.log('Received data:', data);
             setExpirationDate(data.expirationDate || 'No data found');
             setPlayerName(data.playerName || 'Name not found');
@@ -64,7 +65,7 @@ function Scraper() {
     
         } catch (error) {
             console.error('Error fetching data:', error);
-            setError('USCF ID not found. Please check your input and try again.');
+            setError(error.message || 'USCF ID not found. Please check your input and try again.');
         } finally {
             setLoading(false);
         }

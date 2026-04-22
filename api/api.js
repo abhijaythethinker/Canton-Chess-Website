@@ -1,101 +1,25 @@
-const puppeteer = require('puppeteer');
-const chromium = require('@sparticuz/chromium');
+import { lookupUscfMember } from '../lib/uscf.js';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const { uscfId } = req.body;
-    if (!uscfId) {
-        return res.status(400).json({ error: 'USCF ID is required' });
-    }
-
-    let browser;
     try {
-        console.log(`Processing USCF ID: ${uscfId}`);
+        const { uscfId } = req.body ?? {};
+        console.log(`Looking up USCF ID: ${uscfId}`);
+        const result = await lookupUscfMember(uscfId);
 
-        if (process.env.VERCEL) {
-            await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf');
-            browser = await puppeteer.launch({
-                args: chromium.args.concat([
-                    '--disable-dev-shm-usage',
-                    '--no-sandbox',
-                    '--disable-setuid-sandbox',
-                    '--disable-gpu',
-                    '--disable-extensions',
-                    '--disable-background-networking',
-                    '--disable-sync',
-                ]),
-                defaultViewport: chromium.defaultViewport,
-                executablePath: await chromium.executablePath(),
-                headless: chromium.headless,
-                ignoreHTTPSErrors: true,
-            });
-        } else {
-            browser = await puppeteer.launch({ headless: true });
-        }
+        // Cache successful lookups to avoid repeated upstream requests.
+        res.setHeader('Cache-Control', 's-maxage=1800, stale-while-revalidate=86400');
 
-        const page = await browser.newPage();
-
-        await page.setRequestInterception(true);
-        page.on('request', (req) => {
-            const resourceType = req.resourceType();
-            if (['image', 'stylesheet', 'font', 'media'].includes(resourceType)) {
-                req.abort();
-            } else {
-                req.continue();
-            }
-        });
-
-        const url = `https://ratings.uschess.org/?fuzzy=${uscfId}`;
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-
-        await page.waitForFunction(() => {
-            return document.querySelector('span.font-regular') || document.querySelector('p');
-        }, { timeout: 15000 });
-
-        const noResults = await page.$('p');
-        if (noResults) {
-            const text = await page.evaluate(el => el.textContent, noResults);
-            if (text.includes('No results found')) {
-                await browser.close();
-                return res.status(404).json({ error: 'Player information not found' });
-            }
-        }
-
-        const result = await page.evaluate(() => {
-            let playerName = null;
-            let expirationDate = null;
-
-            const firstNameEl = document.querySelector('span.font-regular');
-            const lastNameEl = document.querySelector('span.font-semibold');
-            if (firstNameEl && lastNameEl) {
-                playerName = `${firstNameEl.textContent.trim()} ${lastNameEl.textContent.trim()}`;
-            }
-
-            const expWrapper = Array.from(document.querySelectorAll('span'))
-                .find(el => el.textContent.includes('Exp:'));
-            if (expWrapper) {
-                const expEl = expWrapper.querySelector('span.font-mono');
-                if (expEl) expirationDate = expEl.textContent.trim();
-            }
-
-            return { playerName, expirationDate };
-        });
-
-        await browser.close();
-
-        if (!result.playerName && !result.expirationDate) {
-            return res.status(404).json({ error: 'Player information not found' });
-        }
-
-        console.log('Scraping result:', result);
+        console.log('Lookup result:', result);
         return res.json(result);
 
     } catch (error) {
-        if (browser) await browser.close();
-        console.error('Error during scraping:', error);
-        return res.status(500).json({ error: 'Failed to scrape player information' });
+        console.error('Error during member lookup:', error);
+        return res.status(error.statusCode || 500).json({
+            error: error.statusCode ? error.message : 'Failed to fetch player information',
+        });
     }
 }
