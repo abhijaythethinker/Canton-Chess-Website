@@ -50,11 +50,25 @@ function Scraper() {
                 body: JSON.stringify({ uscfId }),
             });
 
-            const data = await response.json();
+            const contentType = response.headers.get('content-type') || '';
+            const isJsonResponse = contentType.includes('application/json');
+            const payload = isJsonResponse
+                ? await response.json()
+                : await response.text();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Failed to fetch data');
+                if (isJsonResponse && payload?.error) {
+                    throw new Error(payload.error);
+                }
+
+                throw new Error('US Chess lookup failed. Please try again in a minute.');
             }
+
+            if (!isJsonResponse) {
+                throw new Error('US Chess lookup failed. Please try again in a minute.');
+            }
+
+            const data = payload;
 
             console.log('Received data:', data);
             setExpirationDate(data.expirationDate || 'No data found');
